@@ -45,7 +45,8 @@
         height: 12px;
         border-radius: 6px;
         border: 2px solid white;
-        background: transparent; }
+        background: transparent;
+        margin: 4px 0; }
       #scroll-indicator-bullets ul li .bullet-item-link.active .circle {
         background: white; }
       #scroll-indicator-bullets ul li.show-title .circle {
