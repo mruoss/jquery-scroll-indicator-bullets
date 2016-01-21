@@ -83,7 +83,12 @@ $.fn.scrollIndicatorBullets= (options) ->
 				event.preventDefault()
 				scrollTo($(event.currentTarget).data('targetSection'))
 			)
-			$bulletItemLink.append($('<span>').addClass('bullet-nav-title').text($targetSection.find(settings.titleSelector).filter(emptyFilter).first().text()))
+
+			# add title
+			title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text();
+			if (title)
+				$bulletItemLink.append($('<span>').addClass('bullet-nav-title').text())
+
 			$bulletItemLink.append($('<i>').addClass('circle'))
 
 			$bulletItem = $('<li>')

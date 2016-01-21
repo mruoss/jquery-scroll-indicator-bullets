@@ -70,7 +70,7 @@
       $navigationContainer = $('<div>').attr('id', 'scroll-indicator-bullets');
       $navigation = $('<ul>').appendTo($navigationContainer);
       $navTargetSections.each(function(index, targetSection) {
-        var $bulletItem, $bulletItemLink, $prevTargetSection, $targetSection;
+        var $bulletItem, $bulletItemLink, $prevTargetSection, $targetSection, title;
         $targetSection = $(targetSection);
         if (index > 0) {
           $prevTargetSection = $($navTargetSections.get(index - 1));
@@ -85,7 +85,10 @@
           event.preventDefault();
           return scrollTo($(event.currentTarget).data('targetSection'));
         });
-        $bulletItemLink.append($('<span>').addClass('bullet-nav-title').text($targetSection.find(settings.titleSelector).filter(emptyFilter).first().text()));
+        title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text();
+        if (title) {
+          $bulletItemLink.append($('<span>').addClass('bullet-nav-title').text());
+        }
         $bulletItemLink.append($('<i>').addClass('circle'));
         $bulletItem = $('<li>');
         if (Modernizr.touch) {
