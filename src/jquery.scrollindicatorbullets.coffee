@@ -1,5 +1,7 @@
 "use strict"
 
+$ = jQuery
+
 ###
 # scrollIndicatorBullets initializes the bullet navigation on the right side of the screen for a given set of anchor sections.
 # For each anchor section that has an ID, this function creates a bullet. By clicking on a bullet the user scrolls to

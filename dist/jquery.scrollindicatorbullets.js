@@ -1,5 +1,9 @@
 (function() {
   "use strict";
+  var $;
+
+  $ = jQuery;
+
 
   /*
    * scrollIndicatorBullets initializes the bullet navigation on the right side of the screen for a given set of anchor sections.
@@ -7,9 +11,11 @@
    * the referenced pane.
    * The list of scrollable sections panes can hold any kind of element - it's not restricted to actual Drupal panel panes.
    */
+
   $.fn.scrollIndicatorBullets = function(options) {
     var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, settings;
     defaults = {
+      titleSelector: null,
       scrollDuration: 400,
       touchTitleDelay: 500,
       scrollOffset: 50,
@@ -79,7 +85,7 @@
           event.preventDefault();
           return scrollTo($(event.currentTarget).data('targetSection'));
         });
-        $bulletItemLink.append($('<span>').addClass('bullet-nav-title').text($targetSection.find('h2:not(.pane-title),.subtitle,.title').filter(emptyFilter).first().text()));
+        $bulletItemLink.append($('<span>').addClass('bullet-nav-title').text($targetSection.find(settings.titleSelector).filter(emptyFilter).first().text()));
         $bulletItemLink.append($('<i>').addClass('circle'));
         $bulletItem = $('<li>');
         if (Modernizr.touch) {
