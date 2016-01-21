@@ -1,0 +1,70 @@
+@import scrollindicatorbullets.settings
+
+=sci-show-titles
+	.circle
+		text-shadow: none
+	.bullet-nav-title
+		opacity: 1.0
+		right: 2px
+		visibility: visible
+
+@media #{$mq-sci-mobile}
+	#scroll-indicator-bullets
+		display: none
+
+@media #{$mq-sci-full}
+	#scroll-indicator-bullets
+		position: fixed
+		top: 50%
+		transform: translate(0,-50%)
+		right: 0
+		z-index: 8
+		font-size: .8rem
+		ul
+			li
+				position: relative
+				padding-right: 7px
+				a
+					display: block
+					color: $sci-fg-color
+					padding: 4px 0 0 0
+					-webkit-user-select: none !important
+					-webkit-touch-callout: none
+				.bullet-nav-title
+					position: absolute
+					top: 4px
+					right: -10px
+					display: block
+					visibility: hidden
+					opacity: 0.0
+					white-space: nowrap
+					text-align: right
+					transition: opacity 300ms, right 300ms, text-shadow 300ms
+					transition-timing-function: ease-out
+					padding: 2px 22px 2px 4px
+					border-radius: 2px
+					background: $sci-bg-color
+				.bullet-item-link
+					.circle
+						position: relative
+						top: 2px
+						display: block
+						width: $sci-bullet-size
+						height: $sci-bullet-size
+						border-radius: $sci-bullet-size / 2
+						border: 2px solid $sci-fg-color
+						background: transparent
+					&.active
+						.circle
+							background: $sci-fg-color
+				&.show-title
+					+sci-show-titles
+
+html.no-touch
+	#scroll-indicator-bullets
+		ul
+			li:hover
+				+sci-show-titles
+			&:hover
+				.bullet-nav-title
+					visibility: visible

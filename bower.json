@@ -1,0 +1,32 @@
+{
+  "name": "jquery-scroll-indicator-bullets",
+  "version": "0.1.0",
+  "authors": [
+    "Michael Ruoss <michael.ruoss@ufirstgroup.com>"
+  ],
+  "description": "JQuery plugin to create a scroll indicator bullet navigation on the right side of the screen.",
+  "main": [
+    "dist/jquery.scrollindicatorbullets.min.js",
+    "dist/jquery.scrollindicatorbullets.css"
+  ],
+  "keywords": [
+    "jquery",
+    "bullet",
+    "navigation",
+    "scroll",
+    "scroll indicator",
+    "scroll position"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "waypoints": "~4.0.0"
+  }
+}

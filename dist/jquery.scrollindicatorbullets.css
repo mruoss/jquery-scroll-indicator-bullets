@@ -1,0 +1,67 @@
+@media only screen and (max-width: 767px) {
+  #scroll-indicator-bullets {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  #scroll-indicator-bullets {
+    position: fixed;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+    right: 0;
+    z-index: 8;
+    font-size: .8rem; }
+    #scroll-indicator-bullets ul li {
+      position: relative;
+      padding-right: 7px; }
+      #scroll-indicator-bullets ul li a {
+        display: block;
+        color: white;
+        padding: 4px 0 0 0;
+        -webkit-user-select: none !important;
+        -webkit-touch-callout: none; }
+      #scroll-indicator-bullets ul li .bullet-nav-title {
+        position: absolute;
+        top: 4px;
+        right: -10px;
+        display: block;
+        visibility: hidden;
+        opacity: 0.0;
+        white-space: nowrap;
+        text-align: right;
+        -webkit-transition: opacity 300ms, right 300ms, text-shadow 300ms;
+        transition: opacity 300ms, right 300ms, text-shadow 300ms;
+        -webkit-transition-timing-function: ease-out;
+                transition-timing-function: ease-out;
+        padding: 2px 22px 2px 4px;
+        border-radius: 2px;
+        background: rgba(0, 0, 0, 0.4); }
+      #scroll-indicator-bullets ul li .bullet-item-link .circle {
+        position: relative;
+        top: 2px;
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        border: 2px solid white;
+        background: transparent; }
+      #scroll-indicator-bullets ul li .bullet-item-link.active .circle {
+        background: white; }
+      #scroll-indicator-bullets ul li.show-title .circle {
+        text-shadow: none; }
+      #scroll-indicator-bullets ul li.show-title .bullet-nav-title {
+        opacity: 1.0;
+        right: 2px;
+        visibility: visible; } }
+
+html.no-touch #scroll-indicator-bullets ul li:hover .circle {
+  text-shadow: none; }
+
+html.no-touch #scroll-indicator-bullets ul li:hover .bullet-nav-title {
+  opacity: 1.0;
+  right: 2px;
+  visibility: visible; }
+
+html.no-touch #scroll-indicator-bullets ul:hover .bullet-nav-title {
+  visibility: visible; }
