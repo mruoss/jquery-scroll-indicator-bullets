@@ -43,6 +43,10 @@ An object defining a number of the following options may be passed to the plugin
 
   When scrolling up: A section becomes active as soon as the top of the block is this far down the screen.
 
+* **pgKeysEnabled** - boolean [true]
+
+  Should pageUp and pageDown keys trigger the jumps inside the navigation?
+
 ```javascript
 $('div.page-section').scrollIndicatorBullets({
   titleSelector: '.title,.subtitle'

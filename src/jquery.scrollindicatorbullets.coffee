@@ -16,6 +16,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 		scrollOffset: 50
 		waypointOffsetDown: window.innerHeight/3 # Considered 'active' as soon as the top of the block is half way up the screen
 		waypointOffsetUp: 50 # Considered 'active' as soon as the top of the block is 50 px fron the top of the screen
+		pgKeysEnabled: true # Should pageUp and pageDown keys trigger the jumps inside the navigation?
 	}
 
 	settings = $.extend( {}, defaults, options )
@@ -126,6 +127,15 @@ $.fn.scrollIndicatorBullets= (options) ->
 				activateBulletItemLink($(this.element))
 		, {offset: -5})
 
+	initPgUpPgDown = ->
+		$(window.document).keydown((event) ->
+			code = if event.keyCode then event.keyCode else event.which
+			if (code == 33 && scrollToPrevTargetSection())
+				event.preventDefault()
+			else if (code == 34 && scrollToNextTargetSection())
+				event.preventDefault()
+		)
+
 	###
 	# Scrolls to the next section if there is one.
 	# This function returns false if there was no next section so the caller can
@@ -153,6 +163,9 @@ $.fn.scrollIndicatorBullets= (options) ->
 	# and finally, initialize the library
 	initBulletNavigation()
 	initWaypoints()
+
+	if (settings.pgKeysEnabled)
+		initPgUpPgDown()
 
 	return {
 		scrollToNext: scrollToNextTargetSection

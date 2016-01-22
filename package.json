@@ -1,6 +1,6 @@
 {
   "name": "jquery-scroll-indicator-bullets",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JQuery plugin to create a scroll indicator bullet navigation on the right side of the screen.",
   "main": "dist/jquery.scrollindicatorbullets.min.js",
   "scripts": {

@@ -13,14 +13,15 @@
    */
 
   $.fn.scrollIndicatorBullets = function(options) {
-    var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, scrollToPrevTargetSection, settings;
+    var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initPgUpPgDown, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, scrollToPrevTargetSection, settings;
     defaults = {
       titleSelector: null,
       scrollDuration: 400,
       touchTitleDelay: 500,
       scrollOffset: 50,
       waypointOffsetDown: window.innerHeight / 3,
-      waypointOffsetUp: 50
+      waypointOffsetUp: 50,
+      pgKeysEnabled: true
     };
     settings = $.extend({}, defaults, options);
     $anchorSections = this.filter(function() {
@@ -137,6 +138,17 @@
         offset: -5
       });
     };
+    initPgUpPgDown = function() {
+      return $(window.document).keydown(function(event) {
+        var code;
+        code = event.keyCode ? event.keyCode : event.which;
+        if (code === 33 && scrollToPrevTargetSection()) {
+          return event.preventDefault();
+        } else if (code === 34 && scrollToNextTargetSection()) {
+          return event.preventDefault();
+        }
+      });
+    };
 
     /*
     	 * Scrolls to the next section if there is one.
@@ -167,6 +179,9 @@
     };
     initBulletNavigation();
     initWaypoints();
+    if (settings.pgKeysEnabled) {
+      initPgUpPgDown();
+    }
     return {
       scrollToNext: scrollToNextTargetSection,
       scrollToPrev: scrollToPrevTargetSection
