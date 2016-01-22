@@ -33,6 +33,7 @@
       return;
     }
     scrollTo = function($element) {
+      $activeTargetSection = $element;
       return $('body,html').animate({
         scrollTop: $element.offset().top - settings.scrollOffset
       }, settings.scrollDuration, function() {
@@ -104,7 +105,6 @@
     activateBulletItemLink = function($targetSection) {
       $('.bullet-item-link.active').removeClass('active');
       if ($targetSection.data('bulletItemLink')) {
-        $activeTargetSection = $targetSection;
         return $targetSection.data('bulletItemLink').addClass('active');
       }
     };
@@ -116,6 +116,7 @@
       $navTargetSections.waypoint(function(direction) {
         if (direction === 'down') {
           $('.bullet-item-link.active').removeClass('active');
+          $activeTargetSection = $(this.element);
           return activateBulletItemLink($(this.element));
         }
       }, {
@@ -124,6 +125,7 @@
       $navTargetSections.slice(1).waypoint(function(direction) {
         if (direction === 'up') {
           $('.bullet-item-link.active').removeClass('active');
+          $activeTargetSection = $(this.element);
           return activateBulletItemLink($(this.element));
         }
       }, {
@@ -132,6 +134,7 @@
       return $navTargetSections.first().waypoint(function(direction) {
         if (direction === 'up') {
           $('.bullet-item-link.active').removeClass('active');
+          $activeTargetSection = $(this.element);
           return activateBulletItemLink($(this.element));
         }
       }, {

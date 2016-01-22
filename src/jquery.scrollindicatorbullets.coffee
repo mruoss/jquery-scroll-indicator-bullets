@@ -34,6 +34,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 		return
 
 	scrollTo = ($element) ->
+		$activeTargetSection = $element
 		$('body,html').animate({ scrollTop: ($element.offset().top - settings.scrollOffset) }, settings.scrollDuration, () ->
 			activateBulletItemLink($element)
 		)
@@ -103,7 +104,6 @@ $.fn.scrollIndicatorBullets= (options) ->
 	activateBulletItemLink = ($targetSection) ->
 		$('.bullet-item-link.active').removeClass('active')
 		if ($targetSection.data('bulletItemLink'))
-			$activeTargetSection = $targetSection
 			$targetSection.data('bulletItemLink').addClass('active')
 
 	###
@@ -113,17 +113,20 @@ $.fn.scrollIndicatorBullets= (options) ->
 		$navTargetSections.waypoint((direction) ->
 			if (direction == 'down')
 				$('.bullet-item-link.active').removeClass('active')
+				$activeTargetSection = $(this.element)
 				activateBulletItemLink($(this.element))
 		, {offset: settings.waypointOffsetDown})
 		$navTargetSections.slice(1).waypoint((direction) ->
 			if (direction == 'up')
 				$('.bullet-item-link.active').removeClass('active')
+				$activeTargetSection = $(this.element)
 				activateBulletItemLink($(this.element))
 		, {offset: settings.waypointOffsetUp})
 		# extra saussage for the top block
 		$navTargetSections.first().waypoint((direction) ->
 			if (direction == 'up')
 				$('.bullet-item-link.active').removeClass('active')
+				$activeTargetSection = $(this.element)
 				activateBulletItemLink($(this.element))
 		, {offset: -5})
 
