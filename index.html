@@ -81,8 +81,8 @@
     </ul>
 
     <div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>div.page-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>({
-      titleSelector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.title,.subtitle<span class="pl-pds">'</span></span>
-    });</pre></div>
+  titleSelector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.title,.subtitle<span class="pl-pds">'</span></span>
+});</pre></div>
   </div>
 </div>
 <div id="api-section" class="scroll-section">
@@ -104,12 +104,23 @@
 
   <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> scrollIndicatorApi <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>div.page-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>();
 
-  <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.scroll-button<span class="pl-pds">'</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
-      <span class="pl-smi">scrollIndicatorApi</span>.<span class="pl-en">scrollToNext</span>();
-  });</pre></div>
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.scroll-button<span class="pl-pds">'</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
+  <span class="pl-smi">scrollIndicatorApi</span>.<span class="pl-en">scrollToNext</span>();
+});</pre>
+</div>
 </div>
 <h2><a id="user-content-demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
-<p>See the <a href="http://mruoss.github.io/jquery-scroll-indicator-bullets/">Github Pages</a> for a demo of the bullet navigation.</p>
+<p>In order to create this demo I added a few <strong>.scroll-section</strong> classes, some ids, such as the following JS snippet:</p>
+
+  <div class="highlight highlight-source-js"><pre>(<span class="pl-k">function</span> (<span class="pl-smi">$</span>) {
+  <span class="pl-en">$</span>(<span class="pl-k">function</span> () {
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.scroll-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>({
+      titleSelector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>h1,h2,h3<span class="pl-pds">'</span></span>
+    });
+  });
+})(jQuery);
+  </pre>
+  </div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mruoss/jquery-scroll-indicator-bullets">JQuery Scroll Indicator Bullets</a> is maintained by <a href="https://github.com/mruoss">mruoss</a>.</span>
