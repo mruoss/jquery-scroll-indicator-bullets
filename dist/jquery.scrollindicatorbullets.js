@@ -91,7 +91,7 @@
         }
         $bulletItemLink.append($('<i>').addClass('circle'));
         $bulletItem = $('<li>');
-        if (Modernizr.touch) {
+        if ((window.Modernizr != null) && window.Modernizr.touch) {
           initTouchDevices($bulletItem);
         }
         $bulletItemLink.appendTo($bulletItem);

@@ -92,7 +92,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 			$bulletItemLink.append($('<i>').addClass('circle'))
 
 			$bulletItem = $('<li>')
-			initTouchDevices($bulletItem) if (Modernizr.touch)
+			initTouchDevices($bulletItem) if (window.Modernizr? && window.Modernizr.touch)
 			$bulletItemLink.appendTo($bulletItem)
 			$bulletItem.appendTo($navigation)
 		$('body').append($navigationContainer)
