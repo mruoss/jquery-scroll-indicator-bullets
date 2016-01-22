@@ -4,7 +4,7 @@ A JQuery plugin to create a scroll indicator bullet navigation on the right side
 
 ## Requirements
 
-Requires the library [**Waypoints**](https://github.com/imakewebthings/waypoints)
+Requires the library [**Waypoints**](https://github.com/imakewebthings/waypoints).
 
 ## Usage
 
