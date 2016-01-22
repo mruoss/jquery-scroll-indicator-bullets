@@ -86,8 +86,8 @@ $.fn.scrollIndicatorBullets= (options) ->
 
 			# add title
 			title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text();
-			if (title)
-				$bulletItemLink.append($('<span>').addClass('bullet-nav-title').text())
+			if (title != "")
+				$bulletItemLink.append($('<span>').addClass('bullet-nav-title').text(title))
 
 			$bulletItemLink.append($('<i>').addClass('circle'))
 
