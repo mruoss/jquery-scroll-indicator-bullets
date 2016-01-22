@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>JQuery Scroll Indicator Bullets by mruoss</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">JQuery Scroll Indicator Bullets</h1>
+      <h2 class="project-tagline">JQuery plugin to create a scroll indicator bullet navigation on the right side of the screen.</h2>
+      <a href="https://github.com/mruoss/jquery-scroll-indicator-bullets" class="btn">View on GitHub</a>
+      <a href="https://github.com/mruoss/jquery-scroll-indicator-bullets/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mruoss/jquery-scroll-indicator-bullets/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="jquery-scroll-indicator-bullets" class="anchor" href="#jquery-scroll-indicator-bullets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JQuery Scroll Indicator Bullets</h1>
+
+<p>A JQuery plugin to create a scroll indicator bullet navigation on the right side of the screen.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>Requires the library <a href="https://github.com/imakewebthings/waypoints"><strong>Waypoints</strong></a>.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The plugin creates bullets for all matching DOM elements that <strong>contain an ID</strong>. The order of the bullet points reflects the order of the elements in the DOM. Therefore the plugin works best with a set of vertically stacked divs.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>div.page-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>();</pre></div>
+
+<h3>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options</h3>
+
+<p>An object defining a number of the following options may be passed to the plugin:</p>
+
+<ul>
+<li>
+<p><strong>titleSelector</strong> - String [null]</p>
+
+<p>A Selector to retrieve the element's title. The textual content of the first element in the selection is displayed next to the bullet on mouseover.</p>
+</li>
+<li>
+<p><strong>scrollDuration</strong> - int [400]</p>
+
+<p>Duration in ms of the scroll animation.</p>
+</li>
+<li>
+<p><strong>touchTitleDelay</strong> - int [500]</p>
+
+<p>Delay in ms for showing the titles on touch devices.</p>
+</li>
+<li>
+<p><strong>scrollOffset</strong> - int [50]</p>
+
+<p>The offset from the top of the screen to the scrolled section when clicking on the bullet.</p>
+</li>
+<li>
+<p><strong>waypointOffsetDown</strong> - int [window.innerHeight/3]</p>
+
+<p>When scrolling down: A section becomes active as soon as the top of the block is this far up the screen.</p>
+</li>
+<li>
+<p><strong>waypointOffsetUp</strong> - int [50]</p>
+
+<p>When scrolling up: A section becomes active as soon as the top of the block is this far down the screen.</p>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>div.page-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>({
+  titleSelector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.title,.subtitle<span class="pl-pds">'</span></span>
+});</pre></div>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<p>The plugin returns an object with a set of functions:</p>
+
+<ul>
+<li>
+<p><strong>scrollToNext()</strong> - Scroll to the next section if there is one.</p>
+
+<p>This function returns false if there was no next section to scroll to, so the caller can decide on what to do.</p>
+</li>
+<li>
+<p><strong>scrollToPrev()</strong> - Scroll to the previous section if there is one.</p>
+
+<p>This function returns false if there was no previous section to scroll to, so the caller can decide on what to do.</p>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> scrollIndicatorApi <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>div.page-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>();
+
+<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.scroll-button<span class="pl-pds">'</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
+    <span class="pl-smi">scrollIndicatorApi</span>.<span class="pl-en">scrollToNext</span>();
+});</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mruoss/jquery-scroll-indicator-bullets">JQuery Scroll Indicator Bullets</a> is maintained by <a href="https://github.com/mruoss">mruoss</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
