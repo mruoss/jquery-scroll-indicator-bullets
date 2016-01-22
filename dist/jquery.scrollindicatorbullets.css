@@ -38,7 +38,7 @@
                   transition-timing-function: ease-out;
           padding: 2px 22px 2px 4px;
           border-radius: 2px;
-          background: rgba(255, 255, 255, 0.4); }
+          background: rgba(200, 200, 200, 0.4); }
         #scroll-indicator-bullets ul li .bullet-item-link .circle {
           position: relative;
           top: 2px;

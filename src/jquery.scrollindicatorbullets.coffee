@@ -18,7 +18,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 		waypointOffsetUp: 50 # Considered 'active' as soon as the top of the block is 50 px fron the top of the screen
 	}
 
-	settings = $.extend( {}, defaults, options );
+	settings = $.extend( {}, defaults, options )
 
 	$anchorSections = this.filter(->
 		return $(this).height() > 10
@@ -26,7 +26,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 
 	$navTargetSections = $anchorSections.filter('[id]')
 
-	$activeTargetSection = $([]);
+	$activeTargetSection = $([])
 
 	# Don't initialize an empty set of anchor items
 	if (!$navTargetSections.length)
@@ -85,7 +85,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 			)
 
 			# add title
-			title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text();
+			title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text()
 			if (title != "")
 				$bulletItemLink.append($('<span>').addClass('bullet-nav-title').text(title))
 
