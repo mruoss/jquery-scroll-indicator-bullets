@@ -4,7 +4,8 @@ A JQuery plugin to create a scroll indicator bullet navigation on the right side
 
 ## Requirements
 
-Requires the library [**Waypoints**](https://github.com/imakewebthings/waypoints).
+* Requires the library [**Waypoints**](https://github.com/imakewebthings/waypoints).
+* Optionally: [Modernizr](https://modernizr.com/) for a more convenient handling of the titles on touch devices.
 
 ## Usage
 
@@ -68,3 +69,7 @@ $('.scroll-button').click(function () {
     scrollIndicatorApi.scrollToNext();
 });
 ```
+
+## Demo
+
+See the [Github Pages](http://mruoss.github.io/jquery-scroll-indicator-bullets/) for a demo of the bullet navigation.
