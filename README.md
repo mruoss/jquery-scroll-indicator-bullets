@@ -52,7 +52,13 @@ $('div.page-section').scrollIndicatorBullets({
 
 The plugin returns an object with a set of functions:
 
-* **scrollToNext()** - Scroll to the next section.
+* **scrollToNext()** - Scroll to the next section if there is one.
+
+  This function returns false if there was no next section to scroll to, so the caller can decide on what to do.
+
+* **scrollToPrev()** - Scroll to the previous section if there is one.
+
+  This function returns false if there was no previous section to scroll to, so the caller can decide on what to do.
 
 
 ```javascript

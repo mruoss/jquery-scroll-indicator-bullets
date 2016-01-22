@@ -126,19 +126,35 @@ $.fn.scrollIndicatorBullets= (options) ->
 				activateBulletItemLink($(this.element))
 		, {offset: -5})
 
+	###
+	# Scrolls to the next section if there is one.
+	# This function returns false if there was no next section so the caller can
+	# decide on what to do.
+	###
 	scrollToNextTargetSection = ->
 		if ($activeTargetSection && $activeTargetSection.data('nextTargetSection'))
 			scrollTo($activeTargetSection.data('nextTargetSection'))
 			return true
-		else if ($navTargetSections.length && ($('html').scrollTop() + $('body').scrollTop() <= 10))
-			scrollTo($navTargetSections.first())
+		else
+			return false
+
+	###
+	# Scrolls to the previous section if there is one.
+	# This function returns false if there was no next section so the caller can
+	# decide on what to do.
+	###
+	scrollToPrevTargetSection = ->
+		if ($activeTargetSection && $activeTargetSection.data('prevTargetSection'))
+			scrollTo($activeTargetSection.data('prevTargetSection'))
 			return true
 		else
 			return false
 
+	# and finally, initialize the library
 	initBulletNavigation()
 	initWaypoints()
 
 	return {
 		scrollToNext: scrollToNextTargetSection
+		scrollToPrev: scrollToPrevTargetSection
 	}

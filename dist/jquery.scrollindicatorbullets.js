@@ -13,7 +13,7 @@
    */
 
   $.fn.scrollIndicatorBullets = function(options) {
-    var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, settings;
+    var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, scrollToPrevTargetSection, settings;
     defaults = {
       titleSelector: null,
       scrollDuration: 400,
@@ -137,12 +137,29 @@
         offset: -5
       });
     };
+
+    /*
+    	 * Scrolls to the next section if there is one.
+    	 * This function returns false if there was no next section so the caller can
+    	 * decide on what to do.
+     */
     scrollToNextTargetSection = function() {
       if ($activeTargetSection && $activeTargetSection.data('nextTargetSection')) {
         scrollTo($activeTargetSection.data('nextTargetSection'));
         return true;
-      } else if ($navTargetSections.length && ($('html').scrollTop() + $('body').scrollTop() <= 10)) {
-        scrollTo($navTargetSections.first());
+      } else {
+        return false;
+      }
+    };
+
+    /*
+    	 * Scrolls to the previous section if there is one.
+    	 * This function returns false if there was no next section so the caller can
+    	 * decide on what to do.
+     */
+    scrollToPrevTargetSection = function() {
+      if ($activeTargetSection && $activeTargetSection.data('prevTargetSection')) {
+        scrollTo($activeTargetSection.data('prevTargetSection'));
         return true;
       } else {
         return false;
@@ -151,7 +168,8 @@
     initBulletNavigation();
     initWaypoints();
     return {
-      scrollToNext: scrollToNextTargetSection
+      scrollToNext: scrollToNextTargetSection,
+      scrollToPrev: scrollToPrevTargetSection
     };
   };
 
