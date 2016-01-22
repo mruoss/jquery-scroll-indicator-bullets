@@ -8,11 +8,11 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/mruoss/jquery-scroll-indicator-bullets/1.0.2/dist/jquery.scrollindicatorbullets.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/mruoss/jquery-scroll-indicator-bullets/1.0.3/dist/jquery.scrollindicatorbullets.css" media="screen">
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script src="https://cdn.rawgit.com/imakewebthings/waypoints/4.0.0/lib/jquery.waypoints.min.js"></script>
-    <script src="https://cdn.rawgit.com/mruoss/jquery-scroll-indicator-bullets/1.0.2/dist/jquery.scrollindicatorbullets.min.js"></script>
+    <script src="https://cdn.rawgit.com/mruoss/jquery-scroll-indicator-bullets/1.0.3/dist/jquery.scrollindicatorbullets.min.js"></script>
     <script src="js/demo.js"></script>
   </head>
   <body>
@@ -48,36 +48,34 @@
     <p>An object defining a number of the following options may be passed to the plugin:</p>
 
     <ul>
-    <li>
-    <p><strong>titleSelector</strong> - String [null]</p>
-
-    <p>A Selector to retrieve the element's title. The textual content of the first element in the selection is displayed next to the bullet on mouseover.</p>
-    </li>
-    <li>
-    <p><strong>scrollDuration</strong> - int [400]</p>
-
-    <p>Duration in ms of the scroll animation.</p>
-    </li>
-    <li>
-    <p><strong>touchTitleDelay</strong> - int [500]</p>
-
-    <p>Delay in ms for showing the titles on touch devices.</p>
-    </li>
-    <li>
-    <p><strong>scrollOffset</strong> - int [50]</p>
-
-    <p>The offset from the top of the screen to the scrolled section when clicking on the bullet.</p>
-    </li>
-    <li>
-    <p><strong>waypointOffsetDown</strong> - int [window.innerHeight/3]</p>
-
-    <p>When scrolling down: A section becomes active as soon as the top of the block is this far up the screen.</p>
-    </li>
-    <li>
-    <p><strong>waypointOffsetUp</strong> - int [50]</p>
-
-    <p>When scrolling up: A section becomes active as soon as the top of the block is this far down the screen.</p>
-    </li>
+      <li>
+        <p><strong>titleSelector</strong> - String [null]</p>
+        <p>A Selector to retrieve the element's title. The textual content of the first element in the selection is displayed next to the bullet on mouseover.</p>
+      </li>
+      <li>
+        <p><strong>scrollDuration</strong> - int [400]</p>
+        <p>Duration in ms of the scroll animation.</p>
+      </li>
+      <li>
+        <p><strong>touchTitleDelay</strong> - int [500]</p>
+        <p>Delay in ms for showing the titles on touch devices.</p>
+      </li>
+      <li>
+        <p><strong>scrollOffset</strong> - int [50]</p>
+        <p>The offset from the top of the screen to the scrolled section when clicking on the bullet.</p>
+      </li>
+      <li>
+        <p><strong>waypointOffsetDown</strong> - int [window.innerHeight/3]</p>
+        <p>When scrolling down: A section becomes active as soon as the top of the block is this far up the screen.</p>
+      </li>
+      <li>
+        <p><strong>waypointOffsetUp</strong> - int [50]</p>
+        <p>When scrolling up: A section becomes active as soon as the top of the block is this far down the screen.</p>
+      </li>
+      <li>
+        <p><strong>pgKeysEnabled</strong> - boolean [true]</p>
+        <p>Should pageUp and pageDown keys trigger the jumps inside the navigation?</p>
+      </li>
     </ul>
 
     <div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>div.page-section<span class="pl-pds">'</span></span>).<span class="pl-en">scrollIndicatorBullets</span>({
