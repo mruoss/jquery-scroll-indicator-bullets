@@ -56,15 +56,6 @@
         #scroll-indicator-bullets ul li.show-title .bullet-nav-title {
           opacity: 1.0;
           right: 2px;
-          visibility: visible; } }
-
-html.no-touch #scroll-indicator-bullets ul li:hover .circle {
-  text-shadow: none; }
-
-html.no-touch #scroll-indicator-bullets ul li:hover .bullet-nav-title {
-  opacity: 1.0;
-  right: 2px;
-  visibility: visible; }
-
-html.no-touch #scroll-indicator-bullets ul:hover .bullet-nav-title {
-  visibility: visible; }
+          visibility: visible; }
+      #scroll-indicator-bullets ul.open .bullet-nav-title {
+        visibility: visible; } }

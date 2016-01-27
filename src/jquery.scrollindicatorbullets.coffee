@@ -35,6 +35,7 @@ $.fn.scrollIndicatorBullets= (options) ->
 
 	scrollTo = ($element) ->
 		$activeTargetSection = $element
+		history.replaceState({}, '', "#{window.location.pathname}##{$element.attr('id')}") if history.replaceState?
 		$('body,html').animate({ scrollTop: ($element.offset().top - settings.scrollOffset) }, settings.scrollDuration, () ->
 			activateBulletItemLink($element)
 		)
@@ -44,19 +45,37 @@ $.fn.scrollIndicatorBullets= (options) ->
 
 	###
 	# Show titles if bullet is touched for longer that X ms
+	# Use touchend event as trigger to scroll
 	###
 	initTouchDevices = ($bulletItem) ->
 		touchTimeout = null
-		$bulletItem.on('touchstart.scrollnav', (event) ->
+		$bulletItem.on('touchstart.scrollindicator', (event) ->
 			touchTimeout = window.setTimeout(()->
 				$(event.currentTarget).addClass('show-title')
+				touchTimeout = null
 				return
 			, settings.touchTitleDelay)
 		)
-		$bulletItem.on('touchend.scrollnav', (event) ->
+		$bulletItem.on('touchend.scrollindicator', (event) ->
 			if (touchTimeout)
 				window.clearTimeout(touchTimeout)
+				scrollTo($(event.currentTarget).find('a:first').data('targetSection'))
+
 			$('.show-title').removeClass('show-title')
+		)
+
+	###
+	# Show titles on mouseover
+	# Use click event as trigger to scroll
+	###
+	initNonTouchDevices = ($bulletItem, $bulletItemLink, $navigation) ->
+		$bulletItem.on('mouseover.scrollindicator mouseout.scrollindicator', ->
+			$bulletItem.toggleClass('show-title')
+			$navigation.toggleClass('open')
+		)
+		$bulletItemLink.on('click.scrollindicator', (event) ->
+			event.preventDefault()
+			scrollTo($(event.currentTarget).data('targetSection'))
 		)
 
 	###
@@ -81,20 +100,19 @@ $.fn.scrollIndicatorBullets= (options) ->
 			$bulletItemLink.addClass('bullet-item-link')
 			$bulletItemLink.data('targetSection', $targetSection)
 			$targetSection.data('bulletItemLink', $bulletItemLink)
-			$bulletItemLink.click((event) ->
-				event.preventDefault()
-				scrollTo($(event.currentTarget).data('targetSection'))
-			)
 
 			# add title
 			title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text()
 			if (title != "")
 				$bulletItemLink.append($('<span>').addClass('bullet-nav-title').text(title))
-
 			$bulletItemLink.append($('<i>').addClass('circle'))
-
 			$bulletItem = $('<li>')
-			initTouchDevices($bulletItem) if (window.Modernizr? && window.Modernizr.touch)
+
+			if (window.Modernizr? && window.Modernizr.touch)
+				initTouchDevices($bulletItem)
+			else
+				initNonTouchDevices($bulletItem, $bulletItemLink, $navigation)
+
 			$bulletItemLink.appendTo($bulletItem)
 			$bulletItem.appendTo($navigation)
 		$('body').append($navigationContainer)

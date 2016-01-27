@@ -13,7 +13,7 @@
    */
 
   $.fn.scrollIndicatorBullets = function(options) {
-    var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initPgUpPgDown, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, scrollToPrevTargetSection, settings;
+    var $activeTargetSection, $anchorSections, $navTargetSections, activateBulletItemLink, defaults, emptyFilter, initBulletNavigation, initNonTouchDevices, initPgUpPgDown, initTouchDevices, initWaypoints, scrollTo, scrollToNextTargetSection, scrollToPrevTargetSection, settings;
     defaults = {
       titleSelector: null,
       scrollDuration: 400,
@@ -34,6 +34,9 @@
     }
     scrollTo = function($element) {
       $activeTargetSection = $element;
+      if (history.replaceState != null) {
+        history.replaceState({}, '', window.location.pathname + "#" + ($element.attr('id')));
+      }
       return $('body,html').animate({
         scrollTop: $element.offset().top - settings.scrollOffset
       }, settings.scrollDuration, function() {
@@ -50,16 +53,28 @@
     initTouchDevices = function($bulletItem) {
       var touchTimeout;
       touchTimeout = null;
-      $bulletItem.on('touchstart.scrollnav', function(event) {
+      $bulletItem.on('touchstart.scrollindicator', function(event) {
         return touchTimeout = window.setTimeout(function() {
           $(event.currentTarget).addClass('show-title');
+          touchTimeout = null;
         }, settings.touchTitleDelay);
       });
-      return $bulletItem.on('touchend.scrollnav', function(event) {
+      return $bulletItem.on('touchend.scrollindicator', function(event) {
         if (touchTimeout) {
           window.clearTimeout(touchTimeout);
+          scrollTo($(event.currentTarget).find('a:first').data('targetSection'));
         }
         return $('.show-title').removeClass('show-title');
+      });
+    };
+    initNonTouchDevices = function($bulletItem, $bulletItemLink, $navigation) {
+      $bulletItem.on('mouseover.scrollindicator mouseout.scrollindicator', function() {
+        $bulletItem.toggleClass('show-title');
+        return $navigation.toggleClass('open');
+      });
+      return $bulletItemLink.on('click.scrollindicator', function(event) {
+        event.preventDefault();
+        return scrollTo($(event.currentTarget).data('targetSection'));
       });
     };
 
@@ -83,10 +98,6 @@
         $bulletItemLink.addClass('bullet-item-link');
         $bulletItemLink.data('targetSection', $targetSection);
         $targetSection.data('bulletItemLink', $bulletItemLink);
-        $bulletItemLink.click(function(event) {
-          event.preventDefault();
-          return scrollTo($(event.currentTarget).data('targetSection'));
-        });
         title = $targetSection.find(settings.titleSelector).filter(emptyFilter).first().text();
         if (title !== "") {
           $bulletItemLink.append($('<span>').addClass('bullet-nav-title').text(title));
@@ -95,6 +106,8 @@
         $bulletItem = $('<li>');
         if ((window.Modernizr != null) && window.Modernizr.touch) {
           initTouchDevices($bulletItem);
+        } else {
+          initNonTouchDevices($bulletItem, $bulletItemLink, $navigation);
         }
         $bulletItemLink.appendTo($bulletItem);
         return $bulletItem.appendTo($navigation);
