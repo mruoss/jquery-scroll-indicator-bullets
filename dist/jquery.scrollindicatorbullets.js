@@ -2,9 +2,9 @@
   "use strict";
   (function(factory) {
     if (typeof define === 'function' && define.amd) {
-      return define(['jquery'], factory);
+      return define(['jquery', 'waypoints/lib/noframework.waypoints.js'], factory);
     } else if (typeof exports === 'object' && typeof require === 'function') {
-      return factory(require('jquery'));
+      return factory(require('jquery'), require('waypoints/lib/noframework.waypoints.js'));
     } else {
       return factory(jQuery);
     }
@@ -136,31 +136,41 @@
       		 * Initializes different waypoints for directions up and down for each section.
        */
       initWaypoints = function() {
-        $navTargetSections.waypoint(function(direction) {
-          if (direction === 'down') {
-            $('.bullet-item-link.active').removeClass('active');
-            $activeTargetSection = $(this.element);
-            return activateBulletItemLink($(this.element));
-          }
-        }, {
-          offset: settings.waypointOffsetDown
+        $navTargetSections.each(function(index, element) {
+          return new window.Waypoint({
+            element: element,
+            handler: function(direction) {
+              if (direction === 'down') {
+                $('.bullet-item-link.active').removeClass('active');
+                $activeTargetSection = $(this.element);
+                return activateBulletItemLink($(this.element));
+              }
+            },
+            offset: settings.waypointOffsetDown
+          });
         });
-        $navTargetSections.slice(1).waypoint(function(direction) {
-          if (direction === 'up') {
-            $('.bullet-item-link.active').removeClass('active');
-            $activeTargetSection = $(this.element);
-            return activateBulletItemLink($(this.element));
-          }
-        }, {
-          offset: settings.waypointOffsetUp
+        $navTargetSections.slice(1).each(function(index, element) {
+          return new window.Waypoint({
+            element: element,
+            handler: function(direction) {
+              if (direction === 'up') {
+                $('.bullet-item-link.active').removeClass('active');
+                $activeTargetSection = $(this.element);
+                return activateBulletItemLink($(this.element));
+              }
+            },
+            offset: settings.waypointOffsetUp
+          });
         });
-        return $navTargetSections.first().waypoint(function(direction) {
-          if (direction === 'up') {
-            $('.bullet-item-link.active').removeClass('active');
-            $activeTargetSection = $(this.element);
-            return activateBulletItemLink($(this.element));
-          }
-        }, {
+        return new window.Waypoint({
+          element: $navTargetSections.get(0),
+          handler: function(direction) {
+            if (direction === 'up') {
+              $('.bullet-item-link.active').removeClass('active');
+              $activeTargetSection = $(this.element);
+              return activateBulletItemLink($(this.element));
+            }
+          },
           offset: -5
         });
       };

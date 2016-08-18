@@ -4,10 +4,10 @@
 (((factory) ->
 	if (typeof define == 'function' && define.amd)
 		# AMD. Register as an anonymous module.
-		define(['jquery'], factory);
+		define(['jquery', 'waypoints/lib/noframework.waypoints.js'], factory);
 	else if (typeof exports == 'object' && typeof require == 'function')
 		# Browserify
-		factory(require('jquery'));
+		factory(require('jquery'), require('waypoints/lib/noframework.waypoints.js'));
 	else
 		# Browser globals
 		factory(jQuery);
@@ -139,25 +139,41 @@
 		# Initializes different waypoints for directions up and down for each section.
 		###
 		initWaypoints = ->
-			$navTargetSections.waypoint((direction) ->
-				if (direction == 'down')
-					$('.bullet-item-link.active').removeClass('active')
-					$activeTargetSection = $(this.element)
-					activateBulletItemLink($(this.element))
-			, {offset: settings.waypointOffsetDown})
-			$navTargetSections.slice(1).waypoint((direction) ->
-				if (direction == 'up')
-					$('.bullet-item-link.active').removeClass('active')
-					$activeTargetSection = $(this.element)
-					activateBulletItemLink($(this.element))
-			, {offset: settings.waypointOffsetUp})
+			$navTargetSections.each((index, element) ->
+				new window.Waypoint({
+					element: element,
+					handler: (direction) ->
+						if (direction == 'down')
+							$('.bullet-item-link.active').removeClass('active')
+							$activeTargetSection = $(this.element)
+							activateBulletItemLink($(this.element))
+					,
+					offset: settings.waypointOffsetDown
+				})
+			)
+			$navTargetSections.slice(1).each((index, element) ->
+				new window.Waypoint({
+					element: element,
+					handler: (direction) ->
+						if (direction == 'up')
+							$('.bullet-item-link.active').removeClass('active')
+							$activeTargetSection = $(this.element)
+							activateBulletItemLink($(this.element))
+					,
+					offset: settings.waypointOffsetUp
+				})
+			)
 			# extra saussage for the top block
-			$navTargetSections.first().waypoint((direction) ->
-				if (direction == 'up')
-					$('.bullet-item-link.active').removeClass('active')
-					$activeTargetSection = $(this.element)
-					activateBulletItemLink($(this.element))
-			, {offset: -5})
+			new window.Waypoint({
+				element: $navTargetSections.get(0)
+				handler: (direction) ->
+					if (direction == 'up')
+						$('.bullet-item-link.active').removeClass('active')
+						$activeTargetSection = $(this.element)
+						activateBulletItemLink($(this.element))
+				,
+				offset: -5
+			})
 
 		initPgUpPgDown = ->
 			$(window.document).keydown((event) ->
