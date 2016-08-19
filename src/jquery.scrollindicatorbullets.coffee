@@ -4,13 +4,13 @@
 (((factory) ->
 	if (typeof define == 'function' && define.amd)
 		# AMD. Register as an anonymous module.
-		define(['jquery', 'waypoints/lib/noframework.waypoints.js'], factory);
+		define(['jquery', 'waypoints/lib/noframework.waypoints.js'], factory)
 	else if (typeof exports == 'object' && typeof require == 'function')
 		# Browserify
-		factory(require('jquery'), require('waypoints/lib/noframework.waypoints.js'));
+		factory(require('jquery'), require('waypoints/lib/noframework.waypoints.js'))
 	else
 		# Browser globals
-		factory(jQuery);
+		factory(jQuery)
 )(($) ->
 
 	###
