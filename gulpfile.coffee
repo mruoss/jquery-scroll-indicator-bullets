@@ -1,7 +1,7 @@
 gulp				= require('gulp')
 coffee			= require('gulp-coffee')
 concat      = require('gulp-concat')
-autoprefixer = require('autoprefixer-core')
+autoprefixer = require('autoprefixer')
 filter			= require('gulp-filter')
 uglify			= require('gulp-uglify')
 del          = require('del')
