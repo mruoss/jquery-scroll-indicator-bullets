@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/jquery-scroll-indicator-bullets.svg)](https://badge.fury.io/js/jquery-scroll-indicator-bullets)
+[![](https://data.jsdelivr.com/v1/package/npm/jquery-scroll-indicator-bullets/badge)](https://www.jsdelivr.com/package/npm/jquery-scroll-indicator-bullets)
+
 # JQuery Scroll Indicator Bullets
 
 A JQuery plugin to create a scroll indicator bullet navigation on the right side of the screen.
